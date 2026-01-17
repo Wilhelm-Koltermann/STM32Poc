@@ -73,10 +73,6 @@ void Error_Handler(void);
 #define JTCK_GPIO_Port GPIOA
 #define JTDO_Pin GPIO_PIN_3
 #define JTDO_GPIO_Port GPIOB
-#define STLINK_RX_Pin GPIO_PIN_6
-#define STLINK_RX_GPIO_Port GPIOB
-#define STLINK_TX_Pin GPIO_PIN_7
-#define STLINK_TX_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
