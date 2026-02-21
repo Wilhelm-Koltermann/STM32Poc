@@ -39,7 +39,9 @@ set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
-# Add gpio service lib
+# Add interfaces
+add_subdirectory(Interfaces/ComponentCallouts)
+# Add services
 add_subdirectory(Services/Gpio_Service)
 
 # Link directories setup
@@ -68,6 +70,7 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
+    systemCallouts
     gpioService
     # Add user defined libraries
 )

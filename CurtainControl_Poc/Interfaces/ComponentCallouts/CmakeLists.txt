@@ -1,0 +1,12 @@
+set(systemCalloutsLib systemCallouts)
+
+add_library(${systemCalloutsLib} INTERFACE)
+
+target_sources(${systemCalloutsLib}
+    INTERFACE
+    FILE_SET HEADERS
+    BASE_DIRS Interfaces
+    FILES Interfaces/ComponentCallouts/CalloutsGpioService.h
+)
+
+target_include_directories(${systemCalloutsLib} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/..)

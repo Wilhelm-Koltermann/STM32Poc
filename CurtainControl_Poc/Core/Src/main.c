@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ComponentCallouts/CalloutsGpioService.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -271,13 +271,19 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-  static GPIO_PinState pinLevel = GPIO_PIN_RESET;
+  static uint32_t tickCount = 0U;
+  const uint32_t taskPeriodInSeconds = 10U;
+  const uint32_t taskPeriodInTicks = taskPeriodInSeconds * configTICK_RATE_HZ;
   /* Infinite loop */
   for (;;)
   {
-    pinLevel = (GPIO_PIN_RESET == pinLevel) ? GPIO_PIN_SET : GPIO_PIN_RESET;
-    HAL_GPIO_WritePin(Test_Pin_GPIO_Port, Test_Pin_Pin, pinLevel);
-    osDelay(10000U);
+    tickCount = osKernelGetTickCount();
+    // pinLevel = (GPIO_PIN_RESET == pinLevel) ? GPIO_PIN_SET : GPIO_PIN_RESET;
+    // HAL_GPIO_WritePin(Test_Pin_GPIO_Port, Test_Pin_Pin, pinLevel);
+    gpioService10sCallout();
+
+    tickCount += taskPeriodInTicks;
+    osDelayUntil(tickCount);
   }
   /* USER CODE END 5 */
 }

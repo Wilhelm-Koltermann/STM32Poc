@@ -1,7 +1,8 @@
 set(service gpioService)
+set(serviceSources GpioService.cpp GpioServiceCallouts.cpp)
 
-add_library(${service} STATIC GpioService.cpp)
+add_library(${service} STATIC)
 
-target_include_directories(${service} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_sources(${service} PRIVATE ${serviceSources})
 
-target_link_libraries(${service} PRIVATE stm32cubemx)
+target_link_libraries(${service} PRIVATE stm32cubemx systemCallouts)
